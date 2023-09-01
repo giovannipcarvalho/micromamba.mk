@@ -1,0 +1,19 @@
+# vcs
+.git/
+
+# python
+.venv/
+*.pyc
+*.egg-info/
+.coverage
+.mypy_cache/
+.pytest_cache/
+
+# other
+notebooks/
+tmp/
+.env
+
+# micromamba.mk
+micromamba.mk
+.micromambaenv
