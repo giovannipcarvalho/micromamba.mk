@@ -56,8 +56,10 @@ notebook: _active ## Start jupyter notebook
 clean: ## Clean-up generated files
 	@find -type f -name '*.pyc' -delete
 	@find -type d -name '__pycache__' -delete
+	@find -type d -name '.*_cache' -exec rm -rf {} +
 	@rm -rf *.egg-info
 	@rm -rf dist
+	@rm -f .coverage
 
 .PHONY: purge
 purge: clean ## Clean-up and remove environment
