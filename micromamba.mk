@@ -24,7 +24,12 @@ deps: ## Sync dependencies in the virtual environment
 .PHONY: lockdeps
 lockdeps: ## Update or generate dependency lock files
 	@$(VENV)/bin/pip-compile setup.cfg --resolver backtracking -o requirements.txt -v
-	@$(VENV)/bin/pip-compile setup.cfg --resolver backtracking -o requirements-dev.txt --extra dev -v
+	@for extra in $$($(PYTHON) -c \
+		'from setuptools.config.setupcfg import read_configuration as c; \
+		print(*c("setup.cfg")["options"]["extras_require"])'); do \
+			$(VENV)/bin/pip-compile setup.cfg --resolver backtracking \
+			-o requirements-$$extra.txt --extra $$extra -v; \
+	done
 
 .PHONY: check
 check: ## Run checkers, linters and auto-fixers
