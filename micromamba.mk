@@ -17,12 +17,12 @@ activate: ## Open a new shell with the activated environment
 	echo 'eval "$$($(MAMBA) shell activate ${PROJECT_NAME})"; exec </dev/tty' | exec bash -i
 
 .PHONY: deps
-deps: ## Sync dependencies in the virtual environment
+deps: env ## Sync dependencies in the virtual environment
 	@$(VENV)/bin/pip-sync requirements-dev.txt
 	@$(VENV)/bin/pre-commit install >/dev/null
 
 .PHONY: lockdeps
-lockdeps: ## Update or generate dependency lock files
+lockdeps: env ## Update or generate dependency lock files
 	@$(VENV)/bin/pip-compile setup.cfg --resolver backtracking -o requirements.txt -v
 	@for extra in $$($(PYTHON) -c \
 		'from setuptools.config.setupcfg import read_configuration as c; \
@@ -32,15 +32,15 @@ lockdeps: ## Update or generate dependency lock files
 	done
 
 .PHONY: check
-check: ## Run checkers, linters and auto-fixers
+check: env ## Run checkers, linters and auto-fixers
 	@$(VENV)/bin/pre-commit run --all-files
 
 .PHONY: test
-test: ## Run tests
+test: env ## Run tests
 	@$(PYTHON) -m pytest
 
 .PHONY: cov
-cov: ## Run tests and report coverage
+cov: env ## Run tests and report coverage
 	@$(VENV)/bin/coverage erase
 	@$(VENV)/bin/coverage run -m pytest
 	@$(VENV)/bin/coverage report
