@@ -42,8 +42,8 @@ test: env ## Run tests
 .PHONY: cov
 cov: env ## Run tests and report coverage
 	@$(VENV)/bin/coverage erase
-	@$(VENV)/bin/coverage run -m pytest
-	@$(VENV)/bin/coverage report
+	@$(VENV)/bin/coverage run --source=. --branch -m pytest
+	@$(VENV)/bin/coverage report --show-missing --skip-covered
 
 .PHONY: build
 build: ## Build artifacts
