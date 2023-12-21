@@ -60,6 +60,7 @@ notebook: _active ## Start jupyter notebook
 .PHONY: clean
 clean: ## Clean-up generated files
 	@find -type f -name '*.pyc' -delete
+	@find -type f -name '*mypyc*linux-gnu.so' -delete
 	@find -type d -name '__pycache__' -delete
 	@find -type d -name '.*_cache' -exec rm -rf {} +
 	@rm -rf *.egg-info
