@@ -22,7 +22,7 @@ make build run  # builds and runs docker image
 ## Requirements
 
 * Linux, GNU Make & awk
-* [micromamba](https://mamba.readthedocs.io/en/latest/micromamba-installation.html#install-script)
+* [micromamba](https://mamba.readthedocs.io/en/latest/installation/micromamba-installation.html#automatic-install)
 
 ## Usage
 
