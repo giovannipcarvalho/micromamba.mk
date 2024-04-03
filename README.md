@@ -45,7 +45,7 @@ channels:
 dependencies:
   - python=3.11
   - pip:
-    - pip-tools
+    - uv
 ```
 
 3. Run `make help` to see available targets:
