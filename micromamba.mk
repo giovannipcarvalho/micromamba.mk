@@ -18,16 +18,16 @@ activate: ## Open a new shell with the activated environment
 
 .PHONY: deps
 deps: env ## Sync dependencies in the virtual environment
-	uv pip sync requirements-dev.txt
+	@$(VENV)/bin/uv pip sync requirements-dev.txt
 	@$(VENV)/bin/pre-commit install >/dev/null
 
 .PHONY: lockdeps
 lockdeps: env ## Update or generate dependency lock files
-	uv pip compile setup.cfg -o requirements.txt $(args)
+	@$(VENV)/bin/uv pip compile setup.cfg -o requirements.txt $(args)
 	@for extra in $$($(PYTHON) -c \
 		'from setuptools.config.setupcfg import read_configuration as c; \
 		print(*c("setup.cfg")["options"]["extras_require"])'); do \
-			uv pip compile setup.cfg \
+			$(VENV)/bin/uv pip compile setup.cfg \
 			-o requirements-$$extra.txt --extra $$extra $(args); \
 	done
 
