@@ -1,3 +1,6 @@
+force-exclude = true
+
+[lint]
 select = [
   "E", # pycodestyle
   "W", # pycodestyle
@@ -14,13 +17,12 @@ select = [
   "RUF" # ruff
 ]
 fixable = ["I", "UP", "C4"]
-force-exclude = true
 
-[isort]
+[lint.isort]
 force-single-line = true
 
-[per-file-ignores]
+[lint.per-file-ignores]
 "tests*" = ["ARG"]
 
-[flake8-bugbear]
+[lint.flake8-bugbear]
 extend-immutable-calls = ["fastapi.Depends", "fastapi.Query"]

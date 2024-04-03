@@ -100,7 +100,7 @@ pyyaml==6.0.1
     # via pre-commit
 requests==2.31.0
     # via myapp (setup.cfg)
-ruff==0.0.286
+ruff==0.3.5
     # via myapp (setup.cfg)
 six==1.16.0
     # via asttokens
