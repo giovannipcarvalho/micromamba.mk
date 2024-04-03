@@ -18,7 +18,7 @@ activate: ## Open a new shell with the activated environment
 
 .PHONY: deps
 deps: env ## Sync dependencies in the virtual environment
-	@$(VENV)/bin/uv pip sync requirements-dev.txt
+	@CONDA_PREFIX=$(VENV) $(VENV)/bin/uv pip sync requirements-dev.txt
 	@$(VENV)/bin/pre-commit install >/dev/null
 
 .PHONY: lockdeps
