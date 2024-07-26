@@ -53,10 +53,6 @@ build: ## Build artifacts
 run: ## Run main entrypoint
 	@docker run --rm -it ${PROJECT_NAME}
 
-.PHONY: notebook
-notebook: _active ## Start jupyter notebook
-	@mkdir -p notebooks && jupyter notebook --notebook-dir=notebooks
-
 .PHONY: clean
 clean: ## Clean-up generated files
 	@find -type f -name '*.pyc' -delete
