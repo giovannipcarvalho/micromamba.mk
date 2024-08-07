@@ -62,7 +62,6 @@ dependencies:
 <font color="#26A269"><b>cov         </b></font> Run tests and report coverage
 <font color="#26A269"><b>build       </b></font> Build artifacts
 <font color="#26A269"><b>run         </b></font> Run main entrypoint
-<font color="#26A269"><b>notebook    </b></font> Start jupyter notebook
 <font color="#26A269"><b>clean       </b></font> Clean-up generated files
 <font color="#26A269"><b>purge       </b></font> Clean-up and remove environment
 <font color="#26A269"><b>help        </b></font> Show help
