@@ -68,8 +68,8 @@ purge: clean ## Clean-up and remove environment
 	@$(MAMBA) env remove -y -n ${PROJECT_NAME} && rm -rf $(MARKER)
 
 .PHONY: help
-help: micromamba.mk ## Show help
-	@awk -F':.*##' '/##[[:space:]]/{printf "\033[1;32m%-12s\033[m%s\n", $$1, $$2}' $<
+help: ## Show help
+	@awk -F':.*##' '/##[[:space:]]/{printf "\033[1;32m%-12s\033[m%s\n", $$1, $$2}' ${MAKEFILE_LIST}
 
 $(MARKER): environment.yml # only update when environment.yml changes
 	@$(MAMBA) create -n ${PROJECT_NAME} -f $< -y
