@@ -44,7 +44,7 @@ jedi==0.18.2
     #   python-lsp-server
 matplotlib-inline==0.1.6
     # via ipython
-mypy==1.5.1
+mypy==1.11.1
     # via myapp (setup.cfg)
 mypy-extensions==1.0.0
     # via mypy
@@ -86,7 +86,7 @@ pyyaml==6.0.1
     # via pre-commit
 requests==2.31.0
     # via myapp (setup.cfg)
-ruff==0.3.5
+ruff==0.6.0
     # via myapp (setup.cfg)
 setuptools==72.2.0
     # via
