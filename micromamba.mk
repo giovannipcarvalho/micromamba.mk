@@ -1,10 +1,11 @@
 # use current-folder's name as project name
 PROJECT_NAME := $(notdir ${PWD})
 MAMBA := micromamba
-VENV := $$($(MAMBA) info | awk -F': ' '/envs dir/{print $$2}')/$(PROJECT_NAME)
+VENV := $(shell $(MAMBA) info | awk -F': ' '/envs dir/{print $$2}')/$(PROJECT_NAME)
 PYTHON := $(VENV)/bin/python
 UV := $(VENV)/bin/uv
 MARKER := .micromambaenv
+export UV_PROJECT_ENVIRONMENT := $(VENV)
 
 .PHONY: all
 all: env deps check test ## Run main targets
