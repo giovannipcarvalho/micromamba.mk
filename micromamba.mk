@@ -1,7 +1,7 @@
 # use current-folder's name as project name
 PROJECT_NAME := $(notdir ${PWD})
 MAMBA := micromamba
-VENV := $$($(MAMBA) info | awk -F': ' '/base env/{print $$2}')/envs/$(PROJECT_NAME)
+VENV := $$($(MAMBA) info | awk -F': ' '/envs dir/{print $$2}')/$(PROJECT_NAME)
 PYTHON := $(VENV)/bin/python
 MARKER := .micromambaenv
 
