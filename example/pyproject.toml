@@ -1,0 +1,19 @@
+[project]
+name = "example"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "covdefaults>=2.3.0",
+    "coverage>=7.3.0",
+    "ipdb>=0.13.13",
+    "mypy>=1.11.1",
+    "pre-commit>=3.3.3",
+    "pytest>=7.4.0",
+    "python-lsp-server>=1.7.4",
+    "requests>=2.31.0",
+    "ruff>=0.6.0",
+]
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
