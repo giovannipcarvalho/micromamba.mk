@@ -3,6 +3,7 @@ PROJECT_NAME := $(notdir ${PWD})
 MAMBA := micromamba
 VENV := $$($(MAMBA) info | awk -F': ' '/envs dir/{print $$2}')/$(PROJECT_NAME)
 PYTHON := $(VENV)/bin/python
+UV := $(VENV)/bin/uv
 MARKER := .micromambaenv
 
 .PHONY: all
@@ -18,33 +19,27 @@ activate: ## Open a new shell with the activated environment
 
 .PHONY: deps
 deps: env ## Sync dependencies in the virtual environment
-	@CONDA_PREFIX=$(VENV) $(VENV)/bin/uv pip sync requirements-dev.txt
-	@$(VENV)/bin/pre-commit install >/dev/null
+	@$(UV) sync
+	@$(UV) run pre-commit install >/dev/null
 
 .PHONY: lockdeps
 lockdeps: env ## Update or generate dependency lock files
-	@$(VENV)/bin/uv pip compile setup.cfg -o requirements.txt $(args)
-	@for extra in $$($(PYTHON) -c \
-		'from setuptools.config.setupcfg import read_configuration as c; \
-		print(*c("setup.cfg")["options"]["extras_require"])'); do \
-			$(VENV)/bin/uv pip compile setup.cfg \
-			-o requirements-$$extra.txt --extra $$extra $(args); \
-	done
+	@$(UV) lock
 
 .PHONY: check
 check: env ## Run checkers, linters and auto-fixers
-	@$(VENV)/bin/pre-commit run --all-files
+	@$(UV) run pre-commit run --all-files
 
 .PHONY: test
 test: env ## Run tests
-	@$(PYTHON) -m pytest
+	@$(UV) run python -m pytest
 
 .PHONY: cov
 cov: env ## Run tests and report coverage
-	@$(VENV)/bin/coverage erase
-	@$(VENV)/bin/coverage run --source=. --branch -m pytest || true
-	@$(VENV)/bin/coverage report --show-missing --skip-covered --include 'tests/*' --fail-under 100
-	@$(VENV)/bin/coverage report --show-missing --skip-covered
+	@$(UV) run coverage erase
+	@$(UV) run coverage run --source=. --branch -m pytest || true
+	@$(UV) run coverage report --show-missing --skip-covered --include 'tests/*' --fail-under 100
+	@$(UV) run coverage report --show-missing --skip-covered
 
 .PHONY: build
 build: ## Build artifacts
