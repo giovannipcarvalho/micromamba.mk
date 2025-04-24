@@ -1,6 +1,6 @@
 [project]
 name = "example"
-version = "0.1.0"
+dynamic = ["version"]
 requires-python = ">=3.12"
 dependencies = [
     "covdefaults",
@@ -17,3 +17,6 @@ dependencies = [
 [build-system]
 requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools.dynamic]
+version = {attr = "src._version.__version__"}
