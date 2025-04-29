@@ -1,0 +1,25 @@
+[project]
+name = "example"
+dynamic = ["version"]
+requires-python = ">=3.12"
+dependencies = [
+    "covdefaults",
+    "coverage",
+    "ipdb",
+    "mypy",
+    "pre-commit",
+    "pytest",
+    "python-lsp-server",
+    "requests",
+    "ruff",
+]
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+exclude = ["tests*"]
+
+[tool.setuptools.dynamic.version]
+attr = "src._version.__version__"
