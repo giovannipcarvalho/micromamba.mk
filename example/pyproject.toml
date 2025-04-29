@@ -18,5 +18,8 @@ dependencies = [
 requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
 
+[tool.setuptools.packages.find]
+exclude = ["tests*"]
+
 [tool.setuptools.dynamic]
 version = {attr = "src._version.__version__"}
